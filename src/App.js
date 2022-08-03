@@ -1,4 +1,4 @@
-// import { Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./About";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -13,11 +13,15 @@ function App() {
     <div className="App">
       <Header />
       <Nav />
-      <Home />
-      <NewPost />
-      <PostPage />
-      <About />
-      <Missing />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="post" element={<NewPost />} />
+          <Route path="post/:id" element={<PostPage />} />{" "}
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<Missing />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </div>
   );
