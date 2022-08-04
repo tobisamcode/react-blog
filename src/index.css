@@ -113,12 +113,8 @@ body {
   text-decoration: none;
 }
 
-.Nav li:hover,
-.Nav li:focus,
-.Nav li:hover a,
-.Nav li:focus a {
-  background-color: #eee;
-  color: #333;
+.active {
+  color: #66d8f5 !important ;
 }
 
 .Nav li:hover a,
