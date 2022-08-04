@@ -59,7 +59,9 @@ function App() {
             element={
               <NewPost
                 postTitle={postTitle}
+                setPostTitle={setPostTitle}
                 postBody={postBody}
+                setPostBody={setPostBody}
                 handleSubmit={handleSubmit}
               />
             }
