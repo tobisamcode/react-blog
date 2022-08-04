@@ -15,7 +15,12 @@ const Nav = ({ search, setSearch }) => {
       </form>
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : undefined)}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
           <NavLink to="/post">Post</NavLink>
