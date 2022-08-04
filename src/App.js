@@ -42,6 +42,10 @@ function App() {
   ]);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [postTitle, setPostTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+
+  const handleSubmit = () => {};
 
   return (
     <div className="App">
@@ -50,7 +54,16 @@ function App() {
         <Nav search={search} setSearch={setSearch} />
         <Routes>
           <Route path="/" element={<Home posts={posts} />} />
-          <Route path="post" element={<NewPost />} />
+          <Route
+            path="post"
+            element={
+              <NewPost
+                postTitle={postTitle}
+                postBody={postBody}
+                handleSubmit={handleSubmit}
+              />
+            }
+          />
           <Route
             path="post/:id"
             element={<PostPage posts={posts} setPosts={setPosts} />}
