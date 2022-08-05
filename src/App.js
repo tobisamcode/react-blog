@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import About from "./About";
 import Error from "./Error";
@@ -45,13 +45,25 @@ function App() {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
+  useEffect(
+    () => {
+      const filteredResults = posts.filter(
+        post =>
+          post.body.toLowerCase().includes(search.toLowerCase()) ||
+          post.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setSearchResults(filteredResults.reverse());
+    },
+    [posts, search]
+  );
+
   return (
     <div className="App">
       <BrowserRouter>
         <Header title="React Js Blog" />
         <Nav search={search} setSearch={setSearch} />
         <Routes>
-          <Route path="/" element={<Home posts={posts} />} />
+          <Route path="/" element={<Home posts={searchResults} />} />
           <Route
             path="post"
             element={
