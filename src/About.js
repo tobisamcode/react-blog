@@ -1,8 +1,11 @@
 const About = () => {
   return (
-    <div>
+    <main className="About">
       <h2>About</h2>
-    </div>
+      <p style={{ marginTop: "1rem" }}>
+        This blog app is a product in the Learn React tutorial series.
+      </p>
+    </main>
   );
 };
 
