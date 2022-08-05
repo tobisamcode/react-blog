@@ -1,10 +1,14 @@
 const NewPost = ({
-  handleSubmit,
+  posts,
+  setPosts,
   postTitle,
   setPostTitle,
   postBody,
   setPostBody
 }) => {
+  const handleSubmit = () => {
+    // const id =
+  };
   return (
     <main className="NewPost">
       <form onSubmit={handleSubmit} className="newPostForm">
@@ -24,6 +28,7 @@ const NewPost = ({
           value={postBody}
           onChange={e => setPostBody(e.target.value)}
         />
+        <button type="submit">Submit</button>
       </form>
     </main>
   );
