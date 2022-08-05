@@ -45,8 +45,6 @@ function App() {
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
 
-  const handleSubmit = () => {};
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -58,11 +56,12 @@ function App() {
             path="post"
             element={
               <NewPost
+                posts={posts}
+                setPosts={setPosts}
                 postTitle={postTitle}
                 setPostTitle={setPostTitle}
                 postBody={postBody}
                 setPostBody={setPostBody}
-                handleSubmit={handleSubmit}
               />
             }
           />
