@@ -9,12 +9,34 @@ import Nav from "./Nav";
 import NewPost from "./NewPost";
 import PostPage from "./PostPage";
 
+import api from "./api/posts";
+
 function App() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postBody, setPostBody] = useState("");
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await api.get("/posts");
+        setPosts(response.data);
+      } catch (err) {
+        if (err.response) {
+          // Not in the 200 response range
+          console.log(err.response.data);
+          console.log(err.response.status);
+          console.log(err.response.Headers);
+        } else {
+          console.log(`Error: ${err.message}`);
+        }
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   useEffect(
     () => {
