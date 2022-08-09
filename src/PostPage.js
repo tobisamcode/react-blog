@@ -1,17 +1,24 @@
 import { useNavigate, useParams } from "react-router-dom";
+import api from './api/posts'
 
-const PostPage = ({posts, setPosts}) => {
+const PostPage = ({ posts, setPosts }) => {
   const { id } = useParams();
   const post = posts.find(post => post.id == id)
 
 
   const navigate = useNavigate()
 
-  const handleDelete =  async(id) => {
-    const remainingPosts = posts.filter(post => post.id != id);
-    setPosts(remainingPosts);
-    navigate("/");
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`/posts/${id}`);
+      const remainingPosts = posts.filter(post => post.id != id);
+      setPosts(remainingPosts);
+      navigate("/");
+    } catch (err) {
+      console.log(`Error: ${err.message}`)
+    }
   };
+
 
   return (
     <main className="PostPage">
