@@ -73,7 +73,7 @@ function App() {
             }
           />
           <Route
-            path="post"
+            path="edit/:id"
             element={
               <EditPost
                 posts={posts}
