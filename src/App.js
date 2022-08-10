@@ -8,8 +8,8 @@ import Home from "./Home";
 import Nav from "./Nav";
 import NewPost from "./NewPost";
 import PostPage from "./PostPage";
-
 import api from "./api/posts";
+import EditPost from "./EditPost";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -69,6 +69,19 @@ function App() {
                 setPostTitle={setPostTitle}
                 postBody={postBody}
                 setPostBody={setPostBody}
+              />
+            }
+          />
+          <Route
+            path="post"
+            element={
+              <EditPost
+                posts={posts}
+                setPosts={setPosts}
+                editTitle={editTitle}
+                setEditTitle={setEditTitle}
+                editBody={editBody}
+                setEditBody={setEditBody}
               />
             }
           />
