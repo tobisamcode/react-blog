@@ -9,6 +9,7 @@ import Nav from "./Nav";
 import NewPost from "./NewPost";
 import PostPage from "./PostPage";
 import api from "./api/posts";
+f;
 import EditPost from "./EditPost";
 import useWindowSize from "./hooks/useWindowSize";
 import useAxiosFetch from "./hooks/useAxiosFetch";
@@ -25,7 +26,7 @@ function App() {
   const { width } = useWindowSize();
 
   const { data, fetchError, isLoading } = useAxiosFetch(
-    "http://localhost:3500/posts"
+    "http://localhost:3500/poss"
   );
 
   useEffect(
