@@ -1,36 +1,53 @@
 ## lessons learnt
 * React Custom Hooks with Axios Async useEffect 
 
-```javascript import { useState } from "react";
-import axios from "axios";
+```javascript import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default useApi = () => {
+function useAxiosFetch(dataUrl) {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [fetchError, setFetchError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const request = async () => {
-    const source = axios.CancelToken.source();
-    setLoading(true);
-    
-    try {
-      const response = await axios.get(url, { cancelToken: source.token });
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        // don't update state in case component is dismounting
-      } else {
-        setLoading(false);
-        setError(error);
+  useEffect(() => {
+    let isMounted = true;
+    const source = axios.CancelToken.source(); // cancellation token for axios
+
+    const fetchData = async url => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(url, {
+          cancelToken: source.token
+        });
+
+        if (isMounted) {
+          setData(response.data);
+          setFetchError(null);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setFetchError(err.message);
+          setData([]);
+        }
+      } finally {
+        isMounted && setTimeout(() => setIsLoading(false), 2000);
       }
-    }
+    };
 
-    return () => {
+    fetchData(dataUrl);
+
+    const cleanUo = () => {
+      console.log("clean up function");
+      isMounted = false;
       source.cancel();
     };
-  };
 
-  return { data, error, loading, request };
-};
+    return cleanUo;
+  });
+
+  return { data, fetchError, isLoading };
+}
+
+export default useAxiosFetch;
+
 ```
