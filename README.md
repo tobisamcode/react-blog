@@ -1,5 +1,6 @@
 ## lessons learnt
-* React Custom Hooks with Axios Async useEffect 
+
+- React Custom Hooks with Axios Async useEffect
 
 ```javascript import axios from "axios";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ function useAxiosFetch(dataUrl) {
     let isMounted = true;
     const source = axios.CancelToken.source(); // cancellation token for axios
 
-    const fetchData = async url => {
+    const fetchData = async (url) => {
       setIsLoading(true);
       try {
         const response = await axios.get(url, {
@@ -36,18 +37,17 @@ function useAxiosFetch(dataUrl) {
 
     fetchData(dataUrl);
 
-    const cleanUo = () => {
+    const cleanUp = () => {
       console.log("clean up function");
       isMounted = false;
       source.cancel();
     };
 
-    return cleanUo;
+    return cleanUp;
   });
 
   return { data, fetchError, isLoading };
 }
 
 export default useAxiosFetch;
-
 ```
