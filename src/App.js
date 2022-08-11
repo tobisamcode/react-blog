@@ -9,7 +9,6 @@ import Nav from "./Nav";
 import NewPost from "./NewPost";
 import PostPage from "./PostPage";
 import EditPost from "./EditPost";
-import useWindowSize from "./hooks/useWindowSize";
 import useAxiosFetch from "./hooks/useAxiosFetch";
 
 import { DataProvider } from "./context/DataContext";
