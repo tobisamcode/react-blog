@@ -40,7 +40,7 @@ function useAxiosFetch(dataUrl) {
     };
 
     return cleanUp;
-  });
+  }, []);
 
   return { data, fetchError, isLoading };
 }
