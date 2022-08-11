@@ -2,15 +2,12 @@ import { format } from "date-fns";
 import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "./api/posts";
+import { useContext } from "react";
+import DataContext from "./context/DataContext";
 
-function EditPost({
-    posts,
-    setPosts,
-    editBody,
-    editTitle,
-    setEditTitle,
-    setEditBody
-}) {
+function EditPost() {
+  const { posts, setPosts, editBody,editTitle,setEditTitle,setEditBody } = useContext(DataContext);
+
     const navigate = useNavigate();
 
     const { id } = useParams();
