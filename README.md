@@ -51,3 +51,12 @@ function useAxiosFetch(dataUrl) {
 
 export default useAxiosFetch;
 ```
+
+#### watch json server
+
+1. Firstly, run this command to globally install json-server
+   `sudo npm install -g json-server`
+2. Move to your local folder(like my-app) and run this command
+   `npm install json-server`
+3. Open a new Terminal in the same folder
+   `json-server --watch db.json --port 3004 `
