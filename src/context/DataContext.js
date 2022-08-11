@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
 import { createContext } from "react";
-import api from "../api/posts";
-import useWindowSize from "../hooks/useWindowSize";
 import useAxiosFetch from "../hooks/useAxiosFetch";
 
 const DataContext = createContext({});
@@ -15,7 +13,6 @@ export const DataProvider = ({ children }) => {
   const [postBody, setPostBody] = useState("");
   const [editTitle, setEditTitle] = useState("");
   const [editBody, setEditBody] = useState("");
-  const { width } = useWindowSize();
 
   const { data, fetchError, isLoading } = useAxiosFetch(
     "http://localhost:3500/posts"
@@ -41,7 +38,25 @@ export const DataProvider = ({ children }) => {
   );
 
   return (
-    <DataContext.Provider value={{ width }}>
+    <DataContext.Provider
+      value={{
+        search,
+        setSearch,
+        searchResults,
+        fetchError,
+        isLoading,
+        posts,
+        setPosts,
+        postTitle,
+        setPostTitle,
+        postBody,
+        setPostBody,
+        editBody,
+        editTitle,
+        setEditTitle,
+        setEditBody
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
