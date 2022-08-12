@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
 import About from "./About";
 import Error from "./Error";
 import Footer from "./Footer";
